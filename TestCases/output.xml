@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0 (Python 3.10.4 on win32)" generated="20220613 21:45:51.016" rpa="false" schemaversion="3">
+<suite id="s1" name="CRM TC 004" source="C:\Users\abhishek.jayalal\Desktop\Wakanda\13-06-2022\wkd_auto-09-06-2022\TestCases\CRM_TC_004.robot">
+<test id="s1-t1" name="TEST CASE 001" line="33">
+<kw name="Execute Suite Setup as User" library="Common" type="SETUP">
+<doc>Open Browser on Test or preproduction environment</doc>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${Broswer}</arg>
+<arg>${TestData}[Browser]</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 21:45:53.371" level="INFO">Opening browser 'chrome' to base url 'https://keycloak.impl.10.0.14.241.nip.io/auth/realms/Safaricom/account/applications'.</msg>
+<status status="PASS" starttime="20220613 21:45:53.370" endtime="20220613 21:45:56.245"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220613 21:45:56.246" endtime="20220613 21:45:56.382"/>
+</kw>
+<status status="PASS" starttime="20220613 21:45:53.369" endtime="20220613 21:45:56.383"/>
+</kw>
+<kw name="Login to SSO UI" library="SSO_Login_Keyword">
+<arg>${CRM_CREDENTIAL}[username]</arg>
+<arg>${CRM_CREDENTIAL}[password]</arg>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${LoginPage}[UserName]</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${LoginPage}[UserName]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:45:56.388" level="INFO">Clicking element '//input[@name='username']'.</msg>
+<status status="PASS" starttime="20220613 21:45:56.387" endtime="20220613 21:45:56.513"/>
+</kw>
+<status status="PASS" starttime="20220613 21:45:56.386" endtime="20220613 21:45:56.513"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>input text</arg>
+<arg>${LoginPage}[UserName]</arg>
+<arg>${user}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LoginPage}[UserName]</arg>
+<arg>${user}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220613 21:45:56.516" level="INFO">Typing text 'crmtest@6d.co.in' into text field '//input[@name='username']'.</msg>
+<status status="PASS" starttime="20220613 21:45:56.515" endtime="20220613 21:45:56.693"/>
+</kw>
+<status status="PASS" starttime="20220613 21:45:56.514" endtime="20220613 21:45:56.693"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${LoginPage}[Password]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:45:56.694" level="INFO">Clicking element '//input[@name='password']'.</msg>
+<status status="PASS" starttime="20220613 21:45:56.693" endtime="20220613 21:45:56.810"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LoginPage}[Password]</arg>
+<arg>${pass}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220613 21:45:56.812" level="INFO">Typing text '6D@admin' into text field '//input[@name='password']'.</msg>
+<status status="PASS" starttime="20220613 21:45:56.811" endtime="20220613 21:45:56.920"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${LoginPage}[Loginbtn]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:45:56.921" level="INFO">Clicking element '//*[@id='kc-login']'.</msg>
+<status status="PASS" starttime="20220613 21:45:56.921" endtime="20220613 21:45:58.534"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220613 21:46:08.550" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20220613 21:45:58.535" endtime="20220613 21:46:08.550"/>
+</kw>
+<status status="PASS" starttime="20220613 21:45:56.385" endtime="20220613 21:46:08.551"/>
+</kw>
+<kw name="NAVIGATE SSO UI" library="SSO_Login_Keyword">
+<arg>${CRM_UI}</arg>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${ui}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${ui}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:08.554" level="INFO">Clicking element '//div[@class='db-product-card'][2]'.</msg>
+<status status="PASS" starttime="20220613 21:46:08.554" endtime="20220613 21:46:08.667"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:08.553" endtime="20220613 21:46:08.668"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220613 21:46:18.671" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20220613 21:46:08.668" endtime="20220613 21:46:18.671"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>new</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20220613 21:46:18.672" endtime="20220613 21:46:18.699"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220613 21:46:23.711" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20220613 21:46:18.700" endtime="20220613 21:46:23.712"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:08.552" endtime="20220613 21:46:23.713"/>
+</kw>
+<kw name="Add Supplementary Offer" library="CRM_UI_Keywords_NEW_2">
+<arg>TC_002</arg>
+<arg>TD_02</arg>
+<kw name="Fetch From Excel" library="Read_TestData_Keyword">
+<var>${data}</var>
+<arg>${CRM_TestData}</arg>
+<arg>OFFER</arg>
+<arg>${caseID}</arg>
+<arg>${dataID}</arg>
+<kw name="Fetch From ExcelData" library="ReadDataFromExcel">
+<var>${celldata}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${TestCaseID}</arg>
+<arg>${TestDataID}</arg>
+<msg timestamp="20220613 21:46:23.856" level="INFO">TestCaseId TestDataId  ProfileId AccountID     ServiceID           OFFER     ContactNo
+TestDataId                                                                                       
+TD_02          TC_002      TD_02      21244    ET8522  251311000009  Addon NCC data  911234567890</msg>
+<msg timestamp="20220613 21:46:23.881" level="INFO">${celldata} =            TestCaseId TestDataId  ProfileId AccountID     ServiceID           OFFER     ContactNo
+TestDataId                                                                                       
+TD_0...</msg>
+<status status="PASS" starttime="20220613 21:46:23.718" endtime="20220613 21:46:23.881"/>
+</kw>
+<msg timestamp="20220613 21:46:23.911" level="INFO">${data} =            TestCaseId TestDataId  ProfileId AccountID     ServiceID           OFFER     ContactNo
+TestDataId                                                                                       
+TD_0...</msg>
+<status status="PASS" starttime="20220613 21:46:23.716" endtime="20220613 21:46:23.911"/>
+</kw>
+<kw name="Get Data" library="ReadDataFromExcel">
+<var>${SERVICE_ID}</var>
+<arg>${data}</arg>
+<arg>ServiceID</arg>
+<msg timestamp="20220613 21:46:23.913" level="INFO">&lt;class 'numpy.int64'&gt;
+251311000009
+-----------------------------</msg>
+<msg timestamp="20220613 21:46:23.913" level="INFO">${SERVICE_ID} = 251311000009</msg>
+<status status="PASS" starttime="20220613 21:46:23.911" endtime="20220613 21:46:23.913"/>
+</kw>
+<kw name="Get Data" library="ReadDataFromExcel">
+<var>${OFFER}</var>
+<arg>${data}</arg>
+<arg>OFFER</arg>
+<msg timestamp="20220613 21:46:23.915" level="INFO">&lt;class 'str'&gt;
+Addon NCC data
+-----------------------------</msg>
+<msg timestamp="20220613 21:46:23.916" level="INFO">${OFFER} = Addon NCC data</msg>
+<status status="PASS" starttime="20220613 21:46:23.914" endtime="20220613 21:46:23.916"/>
+</kw>
+<kw name="Search By ID" library="CRM_UI_Keywords_NEW_2">
+<arg>${HomePage}[HomeSeachOptionServiceId]</arg>
+<arg>${SERVICE_ID}</arg>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${option}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${option}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:23.920" level="INFO">Clicking element '//option[@value='serviceId']'.</msg>
+<status status="PASS" starttime="20220613 21:46:23.919" endtime="20220613 21:46:24.172"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:23.918" endtime="20220613 21:46:24.172"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>input text</arg>
+<arg>${HomePage}[HomeSearchBar]</arg>
+<arg>${id}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${HomePage}[HomeSearchBar]</arg>
+<arg>${id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:24.174" level="INFO">Typing text '251311000009' into text field '//input[@class='MuiInputBase-input']'.</msg>
+<status status="PASS" starttime="20220613 21:46:24.173" endtime="20220613 21:46:24.474"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:24.173" endtime="20220613 21:46:24.474"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${HomePage}[HomeSearchButton]</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${HomePage}[HomeSearchButton]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:24.476" level="INFO">Clicking element '//span[@class='MuiIconButton-label']'.</msg>
+<status status="PASS" starttime="20220613 21:46:24.475" endtime="20220613 21:46:24.851"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:24.474" endtime="20220613 21:46:24.851"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220613 21:46:26.860" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220613 21:46:24.852" endtime="20220613 21:46:26.860"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:23.916" endtime="20220613 21:46:26.861"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220613 21:46:46.873" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20220613 21:46:26.861" endtime="20220613 21:46:46.873"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ServiceDetailsPage}[PlanSubscriptionButton]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220613 21:46:46.873" endtime="20220613 21:46:46.954"/>
+</kw>
+<kw name="Click Item" library="CRM_UI_Keywords_NEW_2">
+<arg>${ServiceDetailsPage}[PlanSubscriptionButton]</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220613 21:46:46.956" endtime="20220613 21:46:47.009"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:47.012" level="INFO">Clicking element '//span[text()='Plan Subscriptions']'.</msg>
+<status status="PASS" starttime="20220613 21:46:47.012" endtime="20220613 21:46:47.588"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:47.010" endtime="20220613 21:46:47.588"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:46.955" endtime="20220613 21:46:47.589"/>
+</kw>
+<kw name="Click Item" library="CRM_UI_Keywords_NEW_2">
+<arg>${ServiceDetailsPage}[BuyAddOnsButton]</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220613 21:46:47.591" endtime="20220613 21:46:47.646"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:47.648" level="INFO">Clicking element '//button[text()='Buy Add-ons']'.</msg>
+<status status="PASS" starttime="20220613 21:46:47.647" endtime="20220613 21:46:49.108"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:47.646" endtime="20220613 21:46:49.108"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:47.589" endtime="20220613 21:46:49.108"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220613 21:46:54.114" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20220613 21:46:49.110" endtime="20220613 21:46:54.114"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>//div[contains(text(),'${OFFER}')]/child::input</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20220613 21:46:54.115" endtime="20220613 21:46:54.471"/>
+</kw>
+<kw name="Click Item" library="CRM_UI_Keywords_NEW_2">
+<arg>//div[contains(text(),'${OFFER}')]/child::input</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220613 21:46:54.474" endtime="20220613 21:46:54.546"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:54.551" level="INFO">Clicking element '//div[contains(text(),'Addon NCC data')]/child::input'.</msg>
+<status status="PASS" starttime="20220613 21:46:54.549" endtime="20220613 21:46:54.783"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:54.547" endtime="20220613 21:46:54.784"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:54.472" endtime="20220613 21:46:54.786"/>
+</kw>
+<kw name="Click Item" library="CRM_UI_Keywords_NEW_2">
+<arg>${ServiceDetailsPage}[AddToCartButton]</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220613 21:46:54.789" endtime="20220613 21:46:54.869"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:54.872" level="INFO">Clicking element '//button[text()='Add to cart']'.</msg>
+<status status="PASS" starttime="20220613 21:46:54.871" endtime="20220613 21:46:55.141"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:54.869" endtime="20220613 21:46:55.142"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:54.786" endtime="20220613 21:46:55.143"/>
+</kw>
+<kw name="Click Item" library="CRM_UI_Keywords_NEW_2">
+<arg>${ServiceDetailsPage}[AddToCartSubmitButton]</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220613 21:46:55.145" endtime="20220613 21:46:55.262"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:55.267" level="INFO">Clicking element '//button[text()='Submit']'.</msg>
+<status status="PASS" starttime="20220613 21:46:55.265" endtime="20220613 21:46:55.824"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:55.263" endtime="20220613 21:46:55.825"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:55.143" endtime="20220613 21:46:55.826"/>
+</kw>
+<kw name="Click Item" library="CRM_UI_Keywords_NEW_2">
+<arg>${ServiceDetailsPage}[OrderOverviewSubmitButton]</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220613 21:46:55.829" endtime="20220613 21:46:56.213"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:56.216" level="INFO">Clicking element '(//button[text()='Submit'])[2]'.</msg>
+<status status="PASS" starttime="20220613 21:46:56.215" endtime="20220613 21:46:56.888"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:56.213" endtime="20220613 21:46:56.889"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:55.826" endtime="20220613 21:46:56.889"/>
+</kw>
+<kw name="Click Item" library="CRM_UI_Keywords_NEW_2">
+<arg>${ServiceDetailsPage}[OrderOverViewDoneButton]</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220613 21:46:56.891" endtime="20220613 21:46:58.013"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${TimeOut}</arg>
+<arg>${Start}</arg>
+<arg>click element</arg>
+<arg>${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 21:46:58.015" level="INFO">Clicking element '//button[text()='Done']'.</msg>
+<status status="PASS" starttime="20220613 21:46:58.015" endtime="20220613 21:46:58.502"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:58.014" endtime="20220613 21:46:58.502"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:56.889" endtime="20220613 21:46:58.503"/>
+</kw>
+<status status="PASS" starttime="20220613 21:46:23.714" endtime="20220613 21:46:58.503"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220613 21:47:08.515" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20220613 21:46:58.504" endtime="20220613 21:47:08.516"/>
+</kw>
+<kw name="Execute Suite Teardown" library="Common" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${present}</var>
+<arg>Variable Should Exist</arg>
+<arg>${download directory}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${download directory}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<msg timestamp="20220613 21:47:08.539" level="FAIL">Variable '${download directory}' does not exist.</msg>
+<status status="FAIL" starttime="20220613 21:47:08.525" endtime="20220613 21:47:08.549"/>
+</kw>
+<msg timestamp="20220613 21:47:08.550" level="INFO">${present} = False</msg>
+<status status="PASS" starttime="20220613 21:47:08.524" endtime="20220613 21:47:08.550"/>
+</kw>
+<if>
+<branch type="IF" condition="${present}">
+<kw name="Empty Directory" library="OperatingSystem">
+<arg>${download directory}</arg>
+<doc>Deletes all the content from the given directory.</doc>
+<status status="NOT RUN" starttime="20220613 21:47:08.554" endtime="20220613 21:47:08.555"/>
+</kw>
+<kw name="Remove Directory" library="OperatingSystem">
+<arg>${download directory}</arg>
+<doc>Removes the directory pointed to by the given ``path``.</doc>
+<status status="NOT RUN" starttime="20220613 21:47:08.555" endtime="20220613 21:47:08.555"/>
+</kw>
+<status status="NOT RUN" starttime="20220613 21:47:08.552" endtime="20220613 21:47:08.556"/>
+</branch>
+<status status="PASS" starttime="20220613 21:47:08.551" endtime="20220613 21:47:08.556"/>
+</if>
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20220613 21:47:08.556" endtime="20220613 21:47:10.903"/>
+</kw>
+<kw name="Print" library="Common">
+<arg>finished =&gt; Execute Suite Teardown</arg>
+<kw name="Log To Console" library="BuiltIn">
+<arg>\n${message}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220613 21:47:10.907" endtime="20220613 21:47:10.909"/>
+</kw>
+<status status="PASS" starttime="20220613 21:47:10.905" endtime="20220613 21:47:10.910"/>
+</kw>
+<status status="PASS" starttime="20220613 21:47:08.522" endtime="20220613 21:47:10.910"/>
+</kw>
+<doc>Sample TestCase For Automation FrameWork</doc>
+<status status="PASS" starttime="20220613 21:45:53.367" endtime="20220613 21:47:10.912"/>
+</test>
+<doc>Sample TestCase For Automation FrameWork</doc>
+<status status="PASS" starttime="20220613 21:45:51.020" endtime="20220613 21:47:10.919"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="CRM TC 004">CRM TC 004</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
