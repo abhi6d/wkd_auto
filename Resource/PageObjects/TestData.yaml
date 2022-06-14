@@ -1,0 +1,21 @@
+TestData:
+  URL: 'https://keycloak.impl.10.0.14.241.nip.io/auth/realms/Safaricom/account/applications'
+  Browser: 'chrome'
+  Environment : 'localtestbed'
+  USER:
+    nms_user:
+      username: 'nmsadmin'
+      password: 'Nmsadmin@123'
+    crm_user:
+      username: 'crmtest@6d.co.in'
+      password: '6D@admin'
+    upc_user:
+      username: 'upcmaintainer'
+      password: 'Upcmaintainer@123'
+  CRM_TestData: C:/Users/abhishek.jayalal/Desktop/Wakanda/14-06-2022/wkd_auto-13-06-2022_3/Resource/TestData/CRMTestdata.xlsx
+  UPC_TestData: C:/Users/abhishek.jayalal/Desktop/Wakanda_automation/Resource/TestData/NMSTestdata.xlsx
+  NMS_TestData: C:/Users/abhishek.jayalal/Desktop/Wakanda_automation/Resource/TestData/UPCTestdata.xlsx
+  WKD_CRM_TESTDATA: C:/Users/abhishek.jayalal/Desktop/Wakanda/14-06-2022/wkd_auto-13-06-2022_3/Resource/TestData/WKD_DATAPOOL.xlsx
+  CRM_ADDRESS_DATA:
+  OrderDetail:
+    orderId: '1234567'
