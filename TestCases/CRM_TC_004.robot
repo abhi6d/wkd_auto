@@ -45,17 +45,26 @@ TEST CASE 001
     #Manage Profile Residential Address two  TC_001  TD_02
     #Manage Profile Permanent Address two  TC_001  TD_02
     #Manage Service Address One  TC_001  TD_01
-    #Edit Profile Details two  TC_001  TD_01
+    #Edit Profile Details two  TC_001  TD_01       #SCREEN ISSUE
     #Edit Service Details two  TC_001  TD_01
-    #Edit Account Details two  TC_001  TD_01
+    #Edit Account Details two  TC_001  TD_03
+    #Manage Account Address One  TC_001  TD_01
 
-    #Add Supplementary Offer  TC_002  TD_02
+    #Add Supplementary Offer  TC_001  TD_01
     #change SIM ID  TC_001  TD_01
     #Create Ticket  TC_001  TD_01
     #View Identification Details  TC_001  TD_01
-    #Filter Ticket By Status Open    TC_001  TD_02
-    Alter Account State   TC_001  TD_03
-    Sleep   10s
+    #Filter Ticket By Status Open    TC_001  TD_01
+
+    #Alter Account State   TC_001  TD_03
+    #Create Ticket  TC_001  TD_01
+    #Alter Account State   TC_001  TD_03
+    #View Document Details  TC_001  TD_01
+    #Filter Ticket By Status Open    TC_001  TD_01
+    #Search Order By OrderId  TC_001  TD_01
+    #Suspend Supplementary Plan  TC_001  TD_01
+    Update HLR Status  TC_001  TD_01
+    #Sleep   10s
 
 
 

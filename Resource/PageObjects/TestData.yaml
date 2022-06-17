@@ -1,5 +1,6 @@
 TestData:
   URL: 'https://keycloak.impl.10.0.14.241.nip.io/auth/realms/Safaricom/account/applications'
+  #URL: 'https://keycloak.prod.10.0.14.241.nip.io/auth/realms/Safaricom/protocol/openid-connect/auth?client_id=CRMUI&redirect_uri=https%3A%2F%2Fprod.crm-impl.10.0.14.241.nip.io%2Fcrm-ui%2Fhome&state=90625d2a-c635-4faf-9813-ccec6c2fabcf&response_mode=fragment&response_type=code&scope=openid&nonce=b8d37a43-e5eb-4d4c-8827-82d97867d2b0'
   Browser: 'chrome'
   Environment : 'localtestbed'
   USER:
@@ -8,6 +9,7 @@ TestData:
       password: 'Nmsadmin@123'
     crm_user:
       username: 'crmtest@6d.co.in'
+      #password: 'Admin@123'
       password: '6D@admin'
     upc_user:
       username: 'upcmaintainer'

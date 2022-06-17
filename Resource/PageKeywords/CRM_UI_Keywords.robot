@@ -61,18 +61,24 @@ ${HomePage}  ${CRMPage}[HomePage]        # Importing Home page Components
 
 
 
-Set Radio Button
-     [Arguments]     ${label}  ${value}
-     Select Radio Button   ${label}  ${value}
 
 
 Go Back to Home Page
+    [Documentation]    To Navigate to Home screen of CRM UI
     Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element   ${HomePage}[HomeButton]
 
-
+Handle PopUp
+    [Arguments]     ${locator}  ${Expectedvalue}
+    Verify elements is visible and displayed  ${locator}
+    ${String}=  get text     ${locator}
+    Log To Console  ------------------------
+    Log To Console  ${String}
+    Log To Console  ------------------------
+    Should be equal  ${String}   ${Expectedvalue}
 
 
 Edit Profile Details two
+    [Documentation]    To Edit the Profile level details
     [Arguments]     ${caseID}  ${dataID}
 
     ${PROFILE}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  PROFILE_DETAILS  ${caseID}  ${dataID}
@@ -93,33 +99,38 @@ Edit Profile Details two
 
 
 Edit Account Details two
+    [Documentation]    To Edit Account level details
     [Arguments]     ${caseID}  ${dataID}
 
-    ${ACCOUNT}=  Fetch From Excel  ${CRM_TestData}  ACCOUNT  ${caseID}  ${dataID}
-    ${ACCOUNT_ID}=  getData  ${ACCOUNT}  AccountID
-    ${ACCOUNT_NAME}=  getData  ${ACCOUNT}  AccountName
+    ${ACCOUNT}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  ACCOUNT_DETAILS  ${caseID}  ${dataID}
+    Log To Console  ${ACCOUNT}
+    ${ACCOUNT_ID}=  getData  ${ACCOUNT}  ACCOUNT_ID
+    ${ACCOUNT_NAME}=  getData  ${ACCOUNT}  ACCOUNT_NAME
+    ${EMAIL}=  getData  ${ACCOUNT}  EMAIL
+    ${CONTACT_NO}=  getData  ${ACCOUNT}  CONTACT_NO
+    ${LANGUAGE}=  getData  ${ACCOUNT}  LANGUAGE
+    ${KEY_ACC_MANAGER}=  getData  ${ACCOUNT}  KEY_ACC_MANAGER
+    ${BILL_MEDIUM}=  getData  ${ACCOUNT}  BILL_MEDIUM
+    ${BANK_NAME}=  getData  ${ACCOUNT}  BANK_NAME
+    ${BRANCH_CODE}=  getData  ${ACCOUNT}  BRANCH_CODE
+    ${BRANCH_ACCOUNT_TYPE}=  getData  ${ACCOUNT}  BRANCH_ACCOUNT_TYPE
+    ${BRANCH_ACCOUNT_NO}=  getData  ${ACCOUNT}  BRANCH_ACCOUNT_NO
+
     ${contact}=  Generate random string        12     0123456789
     Search By ID  ${HomePage}[HomeSeachOptionAccountId]  ${ACCOUNT_ID}
-    #Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[EditDetails]
     Click Item  ${AccoutDetailPage}[EditDetails]
     Set Input  ${AccoutDetailPage}[AccountName]  ${ACCOUNT_NAME}
-    #Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[LanguageDropdown]
-    Set Dropdown  ${AccoutDetailPage}[LanguageDropdown]  Amharic
-    Set Input  ${AccoutDetailPage}[ContactInput]  ${contact}
-    #Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[AccountManagerDropdown]
-    Set Dropdown  ${AccoutDetailPage}[AccountManagerDropdown]  slm_impl
-    #Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[BillMediumDropdown]
-    Set Dropdown  ${AccoutDetailPage}[BillMediumDropdown]  Email
-    #Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[BankNameDropdown]
-    #Set Dropdown  ${AccoutDetailPage}[BankNameDropdown]  NATIONAL BANK OF ETHOPIA
-    #Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[AccountTypeDropdown]
-    #Set Dropdown  ${AccoutDetailPage}[AccountTypeDropdown]  CURRENT
-    #Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[Submit]
+    Set Dropdown  ${AccoutDetailPage}[LanguageDropdown]  ${LANGUAGE}
+    Set Input  ${AccoutDetailPage}[ContactInput]  ${CONTACT_NO}
+    Set Dropdown  ${AccoutDetailPage}[AccountManagerDropdown]  ${KEY_ACC_MANAGER}
+    Set Dropdown  ${AccoutDetailPage}[BillMediumDropdown]  ${BILL_MEDIUM}
+    Set Dropdown  ${AccoutDetailPage}[BankNameDropdown]  ${BANK_NAME}
+    Set Dropdown  ${AccoutDetailPage}[AccountTypeDropdown]  ${BRANCH_ACCOUNT_TYPE}
     Click Item  ${AccoutDetailPage}[Submit]
     Go Back to Home Page
 
 Edit Service Details two
-
+    [Documentation]    To edit Sevice level details
     [Arguments]     ${caseID}  ${dataID}
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  SERVICE_DETAILS  ${caseID}  ${dataID}
     ${SERVICE_ID}=  getData  ${data}  SERVICE_ID
@@ -133,6 +144,7 @@ Edit Service Details two
 
 
 Manage Profile Residential Address two
+    [Documentation]    To edit Profile level recidential address
     [Arguments]     ${caseID}  ${dataID}
 
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  PROFILE_ADDRESS  ${caseID}  ${dataID}
@@ -170,6 +182,7 @@ Manage Profile Residential Address two
 
 
 Manage Profile Permanent Address two
+    [Documentation]    To edit profile level permanent address
     [Arguments]     ${caseID}  ${dataID}
 
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  PROFILE_ADDRESS  ${caseID}  ${dataID}
@@ -205,10 +218,14 @@ Manage Profile Permanent Address two
     Go Back to Home Page
 
 Manage Account Address One
+    [Documentation]    To edit account level details
     [Arguments]     ${caseID}  ${dataID}
 
-    ${data}=  Fetch From Excel  ${CRM_TestData}  ACCOUNT  ${caseID}  ${dataID}
-    ${ACCOUNT_ID}=  getData  ${data}  AccountID
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  ACCOUNT_ADDRESS  ${caseID}  ${dataID}
+    ${ACCOUNT_ID}=  getData  ${data}  ACCOUNT_ID
+    ${REGION}=  getData  ${data}  REGION
+    ${ZONE}=  getData  ${data}  ZONE
+    ${WOREDA}=  getData  ${data}  WOREDA
     ${Union}=  getData  ${data}  UNION
     ${HomeNo}=  getData  ${data}  HOME_NO
     ${StreetNo}=  getData  ${data}  STREET_NO
@@ -219,41 +236,25 @@ Manage Account Address One
     ${Comment}=  getData  ${data}  COMMENT
 
     Search By ID  ${HomePage}[HomeSeachOptionAccountId]  ${ACCOUNT_ID}
-    Manage tab  ${AccoutDetailPage}[ManageAccount]
-
-    wait until element is visible    ${AccoutDetailPage}[AddressDetail]
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${AccoutDetailPage}[AddressDetail]
-    wait until element is visible    ${AccoutDetailPage}[EditAccountDetail]
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${AccoutDetailPage}[EditAccountDetail]
-    wait until element is visible    ${AccoutDetailPage}[RegionDropdown]
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${AccoutDetailPage}[RegionDropdown]
-    wait until element is visible    ${AccoutDetailPage}[DropdownOption1]
-    click element      ${AccoutDetailPage}[DropdownOption1]
-    wait until element is visible    ${AccoutDetailPage}[ZoneDropdown]
-    click element      ${AccoutDetailPage}[ZoneDropdown]
-    wait until element is visible    ${AccoutDetailPage}[DropdownOption1]
-    click element      ${AccoutDetailPage}[DropdownOption1]
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${AccoutDetailPage}[UnionInput]
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      input text      ${AccoutDetailPage}[UnionInput]      ${Union}
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[HouseNoInput]
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      input text      ${AccoutDetailPage}[HouseNoInput]      ${HomeNo}
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[StreetInput]
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      input text      ${AccoutDetailPage}[StreetInput]      ${StreetNo}
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[PostalCodeInput]
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      input text      ${AccoutDetailPage}[PostalCodeInput]      ${POCode}
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[POInput]
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      input text      ${AccoutDetailPage}[POInput]      ${POBox}
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[LatitudeInput]
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      input text      ${AccoutDetailPage}[LatitudeInput]      ${Latitude}
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[LongitudeInput]
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      input text      ${AccoutDetailPage}[LongitudeInput]      ${Longitude}
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   ${AccoutDetailPage}[AddressComment]
-    Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      input text      ${AccoutDetailPage}[AddressComment]      ${Comment}
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${AccoutDetailPage}[Submit]
+    Click Item  ${AccoutDetailPage}[ManageAccount]
+    Click Item  ${AccoutDetailPage}[AddressDetail]
+    Click Item  ${AccoutDetailPage}[EditAccountDetail]
+    Set Dropdown  ${AccoutDetailPage}[RegionDropdown]  ${REGION}
+    Set Dropdown  ${AccoutDetailPage}[ZoneDropdown]  ${ZONE}
+    Set Input  ${AccoutDetailPage}[UnionInput]      ${Union}
+    Set Input  ${AccoutDetailPage}[HouseNoInput]      ${HomeNo}
+    Set Input  ${AccoutDetailPage}[StreetInput]      ${StreetNo}
+    Set Input  ${AccoutDetailPage}[PostalCodeInput]      ${POCode}
+    Set Input  ${AccoutDetailPage}[POInput]      ${POBox}
+    Set Input  ${AccoutDetailPage}[LatitudeInput]      ${Latitude}
+    Set Input  ${AccoutDetailPage}[LongitudeInput]      ${Longitude}
+    Set Input  ${AccoutDetailPage}[AddressComment]      ${Comment}
+    Click Item  ${AccoutDetailPage}[Submit]
     Go Back to Home Page
 
 
 Manage Service Address One
+    [Documentation]    To edit service level details
     [Arguments]     ${caseID}  ${dataID}
 
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  SERVICE_ADDRESS  ${caseID}  ${dataID}
@@ -290,6 +291,7 @@ Manage Service Address One
 
 
 Add Supplementary Offer
+    [Documentation]    To Buy Add-on offers
     [Arguments]     ${caseID}  ${dataID}
 
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  OFFER  ${caseID}  ${dataID}
@@ -311,6 +313,7 @@ Add Supplementary Offer
     Go Back to Home Page
 
 change SIM ID
+    [Documentation]    To change SIM number
     [Arguments]     ${caseID}  ${dataID}
 
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  SIM_CHANGE  ${caseID}  ${dataID}
@@ -326,10 +329,10 @@ change SIM ID
     Click Item    ${ServiceDetailsPage}[SimChangeComment]
     Set Input  ${ServiceDetailsPage}[SimChangeComment]      Edit1
     Click Item    ${ServiceDetailsPage}[SimChangeSubmit]
-    Sleep   10s
+
     #Select Radio Button   upfrontPayment    2
     #Click Item    //input[@type='checkbox']
-    Select Checkbox  //input[@type='checkbox']
+    #Select Checkbox  //input[@type='checkbox']
     Set Radio Button  upfrontPayment  ${VALUE}
     #${bool}=    Radio Button Should Be Set To   upfrontPayment  2
     #${bool}=    Execute Javascript      var a = document.querySelectorAll('input[type=radio]');for(var i=0;i<a.length;i++){if(a[i].checked==true && a[i].nextSibling.innerHTML.trim() === '${locator_label}') return true; else return false;}
@@ -339,14 +342,17 @@ change SIM ID
     #@${a}=    Execute Javascript      var a = document.querySelectorAll('input[name=upfrontPayment]');for(var i=0;i<a.length;i++){if(a[i].checked==true) return i; else return false;}
 
     #Log To Console  ${a}
-    Sleep   10s
+
     Click Item    (//button[text()='Submit'])[2]
+    Click Item    //span[@class='MuiIconButton-label']//*[name()='svg']
+    Go Back to Home Page
 
     #Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${ServiceDetailsPage}[UpfrontPamentSubmit]
-    Sleep   5s
+
     #Go Back to Home Page
 
 View Identification Details
+    [Documentation]    To view and validate identification details
     [Arguments]     ${caseID}  ${dataID}
     ${PROFILE}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  PROFILE_DETAILS  ${caseID}  ${dataID}
     ${PROFIE_ID}=  getData  ${PROFILE}  PROFIE_ID
@@ -354,36 +360,48 @@ View Identification Details
     Search By ID  ${HomePage}[HomeSeachOptionProfileId]  ${PROFIE_ID}
     Click Item  ${ProfileDetailsPage}[ManageProfile]
     Click Item  ${ProfileDetailsPage}[IdentificationDetails]
-    #wait until element is visible    ${ProfileDetailsPage}[ViewDocument]
-    #Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${ProfileDetailsPage}[ViewDocument]
-    #wait until element is visible    ${ProfileDetailsPage}[DownloadDocument]
-    #Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${ProfileDetailsPage}[DownloadDocument]
-    #Sleep  5s
-    #wait until element is visible    ${ProfileDetailsPage}[DocumentDone]
-    #Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${ProfileDetailsPage}[DocumentDone]
     Verify elements is visible and displayed  //td[normalize-space()='${ID_NUMBER}']
     Go Back to Home Page
 
+View Document Details
+    [Documentation]    To view and validate document details
+    [Arguments]     ${caseID}  ${dataID}
+    ${PROFILE}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  PROFILE_DETAILS  ${caseID}  ${dataID}
+    ${PROFIE_ID}=  getData  ${PROFILE}  PROFIE_ID
+    ${DOCUMENT_ID}=  getData  ${PROFILE}  DOCUMENT_ID
+
+    Search By ID  ${HomePage}[HomeSeachOptionProfileId]  ${PROFIE_ID}
+    Click Item  ${ProfileDetailsPage}[ManageProfile]
+    scroll element into view     ${ProfileDetailsPage}[ViewDocumentDetails]
+    Click Item  ${ProfileDetailsPage}[ViewDocumentDetails]
+    Set Input         ${ProfileDetailsPage}[InputDocumentID]   ${DOCUMENT_ID}
+    Click Item  ${ProfileDetailsPage}[DocumentSearch]
+
+    Go Back to Home Page
+
+
+
 Search Order By OrderId
-    [Arguments]     ${Orderid}
-    wait until element is visible    ${OrderSearch}[Ordertab]
+    [Documentation]    To look Up order by Order ID
+    [Arguments]     ${caseID}  ${dataID}
+    #[Arguments]     ${ORDER_ID}
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  ORDER_INFO  ${caseID}  ${dataID}
+    ${ORDER_ID}=  getData  ${data}  ORDER_ID
+    Log To Console  ${ORDER_ID}
     click element   ${OrderSearch}[Ordertab]
-    wait until element is visible    ${OrderSearch}[viewOrder]
     click element   ${OrderSearch}[viewOrder]
-    wait until element is visible    ${OrderSearch}[Ordertype]
-    click element   ${OrderSearch}[Ordertype]
-    wait until element is visible    ${OrderSearch}[OrderSearchbar]
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element   ${OrderSearch}[OrderSearchbar]
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      input text      ${OrderSearch}[OrderSearchbar]      ${Orderid}
-    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element   ${OrderSearch}[SearchButton]
-    click element   ${OrderSearch}[OrderAction]
-    click element   ${OrderSearch}[OrderView]
-    wait until element is visible    ${OrderSearch}[OrderCloseButton]
+    Set Input  ${OrderSearch}[OrderSearchbar]      ${ORDER_ID}
+    click element   ${OrderSearch}[SearchButton]
+    scroll element into view     (//button[@type='button'])[7]
+    click element   (//button[@type='button'])[7]
+    click element   //button[@aria-label='View']
+    Sleep  10s
     click element   ${OrderSearch}[OrderCloseButton]
 
 
 
 Create Ticket
+    [Documentation]    To Create new ticket
     [Arguments]     ${caseID}  ${dataID}
 
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}   CREATE_TICKET  ${caseID}  ${dataID}
@@ -418,21 +436,26 @@ Create Ticket
 
 
 Filter Ticket By Status Open
+    [Documentation]    To filter tickets based on priority and Ticket ID
     [Arguments]     ${caseID}  ${dataID}
 
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  FILTER_TICKETS  ${caseID}  ${dataID}
     ${SERVICE_ID}=  getData  ${data}  SERVICE_ID
     ${STATUS}=  getData  ${data}  STATUS
+    ${TICKET_ID}=  getData  ${data}  TICKET_ID
 
     Search By ID      ${HomePage}[HomeSeachOptionServiceId]  ${SERVICE_ID}
     Click Item        ${ServiceDetailsPage}[ViewTickets]
-    Click Item        ${ServiceDetailsPage}[AdvanceSearchinViewTicket]
+    #Click Item        ${ServiceDetailsPage}[AdvanceSearchinViewTicket]
+    Set Input         ${ServiceDetailsPage}[InputTicketID]   ${TICKET_ID}
     Set Dropdown      ${ServiceDetailsPage}[ViewTicketStatusDropdown]   ${STATUS}
     Click Item        ${ServiceDetailsPage}[ViewTicketSearch]
-
+    Verify elements is visible and displayed  //td[normalize-space()='${TICKET_ID}']
+    Go Back to Home Page
 
 
 Alter Account State
+    [Documentation]    To alter account state
     [Arguments]     ${caseID}  ${dataID}
 
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  ALTER_ACCOUNT_STATE  ${caseID}  ${dataID}
@@ -442,7 +465,6 @@ Alter Account State
     ${COMMENT}=  getData  ${data}  COMMENT
 
     Search By ID  ${HomePage}[HomeSeachOptionServiceId]  ${SERVICE_ID}
-    #Manage tab  ${ServiceDetailsPage}[ManageService]
     Click Item  ${ServiceDetailsPage}[ManageService]
     scroll element into view     ${ServiceDetailsPage}[ChangeLifeCycle]
     Click Item     ${ServiceDetailsPage}[ChangeLifeCycle]
@@ -450,3 +472,41 @@ Alter Account State
     Set Dropdown   ${ServiceDetailsPage}[ChangeLifeCycleReasonDropdown]  ${REASON}
     Set Input      ${ServiceDetailsPage}[CommentsChangeLifeCycleInput]   ${COMMENT}
     Click Item     ${ServiceDetailsPage}[SubmitChangeLifeCycleButton]
+    Go Back to Home Page
+
+
+Suspend Supplementary Plan
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}   SERVICE_DETAILS  ${caseID}  ${dataID}
+    ${SERVICE_ID}=  getData  ${data}  SERVICE_ID
+
+    Click Item      ${HomePage}[HomeSeachOptionServiceId]
+    Set Input      ${HomePage}[HomeSearchBar]    ${SERVICE_ID}
+    Click Item   ${HomePage}[HomeSearchButton]
+    Click Item      ${ServiceDetailsPage}[PlanSubscriptionButton]
+    Sleep  3s
+    scroll element into view  ${ServiceDetailsPage}[ActiomToCancelSubscriptionButton]
+    Sleep  3s
+    Click Item    ${ServiceDetailsPage}[ActiomToCancelSubscriptionButton]
+    Sleep  3s
+    Click Item    ${ServiceDetailsPage}[SuspendPlanButton]
+    Sleep  3s
+    Click Item    ${ServiceDetailsPage}[YesButton]
+    Handle PopUp   ${ServiceDetailsPage}[OrderPlacedSuccessfully]    Order Placed Successfully
+
+Update HLR Status
+
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}   HLR  ${caseID}  ${dataID}
+    ${SERVICE_ID}=  getData  ${data}  ServiceID
+    ${NEW_DEVICE_STATUS}=  getData  ${data}  New device status
+    ${Action}=  getData  ${data}  Action
+
+    Search By ID  ${HomePage}[HomeSeachOptionServiceId]  ${SERVICE_ID}
+    Click Item    ${ServiceDetailsPage}[ManageService]
+    Click Item    ${ServiceDetailsPage}[HLR/EIR Status]
+    Set Dropdown    ${ServiceDetailsPage}[HLRNewDeviceStatus]   ${NEW_DEVICE_STATUS}
+    Set Dropdown    ${ServiceDetailsPage}[HLRStatusAction]      ${Action}
+    Click Item    ${ServiceDetailsPage}[HLRStatusSubmitButton]

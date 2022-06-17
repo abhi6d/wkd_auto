@@ -157,6 +157,13 @@ Set Dropdown
         Click Item  //label[text()='${locator_label}']
     END
 
+Set Radio Button
+     [Arguments]     ${label}  ${value}
+     Verify elements is visible and displayed  //input[@type='radio']
+     Select Radio Button   ${label}  ${value}
+
+
+
 Set Dropdown2
     [Arguments]     ${dropdown}  ${locator_li}
 

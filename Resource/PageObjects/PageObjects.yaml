@@ -39,10 +39,11 @@ CRMPage :
 
 
   OrderSearch:
-    Ordertab: "//div[text()='Order Management']"
+    Ordertab: "//div[contains(text(),'Order Management')]"
     viewOrder: "//a[@id='/viewOrders']"
+    #viewOrder: "//a[@id='/crm-ui/viewOrders']"
     Ordertype: "//div[@class=' css-g1d714-ValueContainer']"
-    OrderSearchbar: "//input[@class='MuiInputBase-input MuiOutlinedInput-input']"
+    OrderSearchbar: "//input[@id='orderId']"
     SearchButton: "//button[@class='sc-bczRLJ kGooYe']"
     OrderAction:  "//button[@class='action-btn-popover btn btn-secondary']"
     OrderView:  "//div[@class='popover-body']"
@@ -77,8 +78,8 @@ CRMPage :
     ServiceNameInput: "(//input[@id='serviceName'])[2]"
     Submit: "//button[text()='Submit']"
     ManageService: "//div[text()='Manage Service']"
-    #AddressDetail: "//a[@href='/crm-ui/profile/account/service/serviceAddress']"
-    AddressDetail: "//a[@href='/profile/account/service/serviceAddress']"
+    AddressDetail: "//a[@href='/crm-ui/profile/account/service/serviceAddress']"
+    #AddressDetail: "//a[@href='/profile/account/service/serviceAddress']"
     AddressEdit: "//button[text()='Edit']"
     RegionDropdown: "(//div[@class=' css-g1d714-ValueContainer'])[1]"
     ZoneDropdown: "(//div[@class=' css-g1d714-ValueContainer'])[2]"
@@ -141,6 +142,7 @@ CRMPage :
     AdvanceSearchinViewTicket: "//span[text()='Advanced Search']"
     ViewTicketStatusDropdown: "(//div[@class=' css-g1d714-ValueContainer'])[1]"
     ViewTicketPriorityDropdown: "(//div[@class=' css-g1d714-ValueContainer'])[2]"
+    InputTicketID: "//input[@id='ticketId']"
     ViewTicketSearch: "//button[text()='Search']"
 
     ChangeLifeCycle: "//a[@id='/crm-ui/profile/account/service/changeLifeCycle']"
@@ -148,6 +150,16 @@ CRMPage :
     ChangeLifeCycleReasonDropdown: "(//div[@class=' css-g1d714-ValueContainer'])[2]"
     CommentsChangeLifeCycleInput: "//textarea[@id='comments']"
     SubmitChangeLifeCycleButton: "//button[text()='Submit']"
+
+    HLR/EIR Status: "//a[@id='/crm-ui/profile/account/service/HLR-EIR']"
+    HLRNewDeviceStatus: "(//div[@class=' css-g1d714-ValueContainer'])[1]"
+    HLRStatusAction: "(//div[@class=' css-g1d714-ValueContainer'])[2]"
+    HLRStatusSubmitButton: "//button[text()='Submit']"
+
+    ActiomToCancelSubscriptionButton: "(//button[@class='action-btn-popover btn btn-secondary'])[1]"
+    SuspendPlanButton: "(//button[@class='MuiButtonBase-root MuiIconButton-root table-actionbtn'])[22]"
+    YesButton: "//button[text()='YES']"
+    OrderPlacedSuccessfully: "//span[text()='Order Placed Successfully']"
 
 
   ProfileDetailPage:
@@ -160,8 +172,8 @@ CRMPage :
     AlternateContactInput: "(//input[@id='alternateContactNumber'])[2]"
     EditProfileSubmit: "//button[@form='edit-profile']"
     ManageProfile: "//div[text()='Profile']"
-    #ManageProfileAddress: "//a[@href='/crm-ui/profile/profileAddress']"
-    ManageProfileAddress: "//a[@href='/profile/profileAddress']"
+    ManageProfileAddress: "//a[@href='/crm-ui/profile/profileAddress']"
+    #ManageProfileAddress: "//a[@href='/profile/profileAddress']"
     #IdentificationDetails: "//a[@href='/profile/identificationDetails']"
     IdentificationDetails: "//a[@href='/crm-ui/profile/identificationDetails']"
     ViewDocument: "(//div)[73]"
@@ -195,13 +207,18 @@ CRMPage :
     Residential_AddressComment: "//textarea[@id='addressComment']"
     ResidentialAddressSubmit: "//button[text()='Submit']"
 
+    ViewDocumentDetails: "//a[@href='/crm-ui/profile/ViewDocument']"
+    InputDocumentID: "//input[@id='documentName']"
+    DocumentSearch: "//button[normalize-space()='Search']"
+
 
 
 
   AccoutDetailPage:
     AccountTab:  "//div[text()='Account Details']"
     ManageAccount: "//div[text()='Manage Account']"
-    AddressDetail: "//a[@href='/profile/account/accountAddress']"
+    #AddressDetail: "//a[@href='/profile/account/accountAddress']"
+    AddressDetail: "//a[@href='/crm-ui/profile/account/accountAddress']"
     EditAccountDetail: "//button[text()='Edit']"
     RegionDropdown: "(//div[@class=' css-g1d714-ValueContainer'])[1]"
     ZoneDropdown: "(//div[@class=' css-g1d714-ValueContainer'])[2]"
