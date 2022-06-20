@@ -76,6 +76,29 @@ Handle PopUp
     Log To Console  ------------------------
     Should be equal  ${String}   ${Expectedvalue}
 
+Set Slider
+    [Arguments]     ${label}  ${value}
+    #${String}=  get text     ${locator}
+    #Log To Console  ${String}
+    ${Is_Checkbox_Selected}=    Run Keyword And Return Status    Checkbox Should Be Selected    //label[text()='${label}']/following-sibling::div/label//span/input[@type='checkbox']
+    #Run Keyword If  '${Is_Checkbox_Selected}' != 'False'  Log To Console  NANACONDITION
+
+    #Click Item  ${locator}
+
+    ${passed}=    Run Keyword If  '${Is_Checkbox_Selected}' == 'False'  Set Variable    NO
+    ...  ELSE IF  '${Is_Checkbox_Selected}' == 'True'  Set Variable    YES
+    ...  ELSE  Log To Console  SLIDER STATUS SHOULD BE BINARY[True/False]
+
+    Log To Console  bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    Log To Console  ${passed}
+    Log To Console  bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+    Run Keyword If  '${value}' != '${passed}'  Click Item  //label[text()='${label}']/following-sibling::div/label//div
+    ...  ELSE IF  '${value}' == 'nan'  Log To Console  Blank
+    ...  ELSE  Log To Console  SLIDER STATUS SHOULD BE BINARY[YES/NO]
+
+
+
 
 Edit Profile Details two
     [Documentation]    To Edit the Profile level details
@@ -117,6 +140,9 @@ Edit Account Details two
     ${BRANCH_ACCOUNT_NO}=  getData  ${ACCOUNT}  BRANCH_ACCOUNT_NO
 
     ${contact}=  Generate random string        12     0123456789
+    ${ITEMIZED_BILL_STATEMENT}=  getData  ${ACCOUNT}  ITEMIZED_BILL_STATEMENT
+    ${DIRECT_DEBT}=  getData  ${ACCOUNT}  DIRECT_DEBT
+
     Search By ID  ${HomePage}[HomeSeachOptionAccountId]  ${ACCOUNT_ID}
     Click Item  ${AccoutDetailPage}[EditDetails]
     Set Input  ${AccoutDetailPage}[AccountName]  ${ACCOUNT_NAME}
@@ -124,8 +150,25 @@ Edit Account Details two
     Set Input  ${AccoutDetailPage}[ContactInput]  ${CONTACT_NO}
     Set Dropdown  ${AccoutDetailPage}[AccountManagerDropdown]  ${KEY_ACC_MANAGER}
     Set Dropdown  ${AccoutDetailPage}[BillMediumDropdown]  ${BILL_MEDIUM}
-    Set Dropdown  ${AccoutDetailPage}[BankNameDropdown]  ${BANK_NAME}
-    Set Dropdown  ${AccoutDetailPage}[AccountTypeDropdown]  ${BRANCH_ACCOUNT_TYPE}
+    Set Slider  Itemized Bill Statement  NO
+    Set Slider  Email Notification  NO
+    Set Slider  Direct Debit  ${DIRECT_DEBT}
+
+    IF    '${DIRECT_DEBT}' == 'YES'
+        #Log To Console  DEBIT PANEL ENABLLED OOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+        Click Item  ${AccoutDetailPage}[BankNameDropdown]
+        Click Item  //label[text()='${BANK_NAME}' and @md='10']
+        Click Item  ${AccoutDetailPage}[AccountTypeDropdown]
+        Click Item  //label[text()='${BRANCH_ACCOUNT_TYPE}' and @md='10']
+
+        #Set Dropdown  ${AccoutDetailPage}[BankNameDropdown]  ${BANK_NAME}
+        #Set Dropdown  ${AccoutDetailPage}[AccountTypeDropdown]  ${BRANCH_ACCOUNT_TYPE}
+    END
+    #Sleep  10s
+    #Run Keyword If  '${DIRECT_DEBT}' == 'YES'  Set Dropdown  ${AccoutDetailPage}[BankNameDropdown]  ${BANK_NAME}
+    #Run Keyword If  '${DIRECT_DEBT}' == 'YES'  Set Dropdown  ${AccoutDetailPage}[AccountTypeDropdown]  ${BRANCH_ACCOUNT_TYPE}
+
     Click Item  ${AccoutDetailPage}[Submit]
     Go Back to Home Page
 

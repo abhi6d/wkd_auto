@@ -47,7 +47,7 @@ TEST CASE 001
     #Manage Service Address One  TC_001  TD_01
     #Edit Profile Details two  TC_001  TD_01       #SCREEN ISSUE
     #Edit Service Details two  TC_001  TD_01
-    #Edit Account Details two  TC_001  TD_03
+    Edit Account Details two  TC_001  TD_01
     #Manage Account Address One  TC_001  TD_01
 
     #Add Supplementary Offer  TC_001  TD_01
@@ -63,7 +63,7 @@ TEST CASE 001
     #Filter Ticket By Status Open    TC_001  TD_01
     #Search Order By OrderId  TC_001  TD_01
     #Suspend Supplementary Plan  TC_001  TD_01
-    Update HLR Status  TC_001  TD_01
+    #Update HLR Status  TC_001  TD_01
     #Sleep   10s
 
 

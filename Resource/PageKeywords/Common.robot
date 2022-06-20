@@ -154,7 +154,8 @@ Set Dropdown
     IF    not ${bool}
         #Wait until element is visible    //label[text()='${locator_label}']
         #Wait Until Keyword Succeeds     ${TimeOut}      ${Start}      click element   //label[text()='${locator_label}']
-        Click Item  //label[text()='${locator_label}']
+        Click Item  //label[text()='${locator_label}' and @md='10']
+        #Click Item  (//label[text()='${locator_label}']])[last()]
     END
 
 Set Radio Button
