@@ -42,6 +42,23 @@ TEST CASE 001
     NAVIGATE SSO UI  ${CRM_UI}
 #-----------------------------------------------------------------------------------------------
 
+    #Search By ID  //option[text()='${LABEL}']  251311000030
+    #Verify elements is visible and displayed  //div[contains(text(),'${LABEL}')]/following-sibling::div//span[text()='251311000030']
+    #Sleep  10s
+
+
+    #View and Validate By  TC_001  TD_01
+
+    #View and Validate By  TC_001  TD_02
+    #View and Validate By  TC_001  TD_04
+    #View and Validate By  TC_001  TD_06
+    #View and Validate By  TC_001  TD_12
+    #View and Validate By  TC_001  TD_14
+
+    #Validate Service Details  TC_001  TD_01
+    Validate Profile Details  TC_004  TD_04
+    #Validate Account Details  TC_001  TD_04
+    Sleep  10s
     #Manage Profile Residential Address two  TC_001  TD_01           #completed 1
     #Manage Profile Permanent Address two  TC_001  TD_01             #completed 1
     #Manage Service Address One  TC_001  TD_01                      #completed 1

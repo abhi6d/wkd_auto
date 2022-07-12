@@ -47,13 +47,13 @@ TEST CASE 001
     Edit Account Details two  TC_001  TD_01                         #SCREEN ISSUE - DATA SUBMISSION
     Manage Account Address One  TC_001  TD_01
     Edit Profile Details two  TC_001  TD_01
-    #Create Ticket  TC_001  TD_01      #DROPDOWN ISSUE
-    #View Identification Details  TC_001  TD_01
-    #Filter Ticket By Status Open    TC_001  TD_01
-    #Alter Account State   TC_001  TD_03
-    #View Document Details  TC_002  TD_01
-    #Update HLR Status  TC_001  TD_01
-    #change SIM ID  TC_001  TD_01
+    Create Ticket  TC_001  TD_01      #DROPDOWN ISSUE
+    View Identification Details  TC_001  TD_01
+    Filter Ticket By Status Open    TC_001  TD_01
+    Alter Account State   TC_001  TD_03
+    View Document Details  TC_002  TD_01
+    Update HLR Status  TC_001  TD_01
+    change SIM ID  TC_001  TD_01
     #Sleep   10s
 
 

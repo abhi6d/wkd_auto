@@ -60,6 +60,9 @@ ${HomePage}  ${CRMPage}[HomePage]        # Importing Home page Components
 #    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}      click element      ${Refreshtab}
 
 
+Validate Value
+    [Arguments]     ${value}  ${locator}
+    Wait Until Keyword Succeeds    ${TimeOut}      ${Start}     wait until page contains element    ${locator}
 
 
 
@@ -111,15 +114,53 @@ Edit Profile Details two
     ${alternate_Contact}=  getData  ${PROFILE}  ALTERNATE CONTACT
 
     Search By ID  ${HomePage}[HomeSeachOptionProfileId]  ${PROFIE_ID}
-    Sleep  10s
     Click Item  ${ProfileDetailsPage}[EditProfileDetail]
     Set Input  ${ProfileDetailsPage}[EmailInput]  ${email}
     Set Input  ${ProfileDetailsPage}[ContactNumberInput]  ${contact}
     Set Input  ${ProfileDetailsPage}[AlternateContactInput]  ${alternate_Contact}
     Click Item  ${ProfileDetailsPage}[EditProfileSubmit]
-    #Click Item  //a//span[text()='Dashboard']
-    #Sleep  10s
+    Verify elements is visible and displayed  //span[@class='block-refresh-icon ']
+    Click Item  //span[@class='block-refresh-icon ']
+    #Verify elements is visible and displayed  //label[normalize-space()='Email']/following-sibling::input[@value='${email}']
+
+    #Wait Until Keyword Succeeds    ${TimeOut}      ${Start}     wait until page contains element    //label[normalize-space()='Email']/following-sibling::input[@value='${email}']
+    #Validate Value  ${email}  //label[normalize-space()='Email']/following-sibling::input[@value='${email}']
+    #Validate Value  ${contact}  //label[normalize-space()='Contact Number']/following-sibling::input[@value='${contact}']
+    #Validate Value  ${alternate_Contact}  //label[normalize-space()='Alternate Contact Number']/following-sibling::input[@value='${alternate_Contact}']
     Go Back to Home Page
+
+
+Manage Account Service
+    [Documentation]    To Edit Account level details
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${ACCOUNT}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  ACCOUNT_DETAILS  ${caseID}  ${dataID}
+    Log To Console  ${ACCOUNT}
+    ${ACCOUNT_ID}=  getData  ${ACCOUNT}  ACCOUNT_ID
+    ${ACCOUNT_NAME}=  getData  ${ACCOUNT}  ACCOUNT_NAME
+    ${EMAIL}=  getData  ${ACCOUNT}  EMAIL
+    ${CONTACT_NO}=  getData  ${ACCOUNT}  CONTACT_NO
+    ${LANGUAGE}=  getData  ${ACCOUNT}  LANGUAGE
+    ${KEY_ACC_MANAGER}=  getData  ${ACCOUNT}  KEY_ACC_MANAGER
+    ${BILL_MEDIUM}=  getData  ${ACCOUNT}  BILL_MEDIUM
+    ${BANK_NAME}=  getData  ${ACCOUNT}  BANK_NAME
+    ${BRANCH_CODE}=  getData  ${ACCOUNT}  BRANCH_CODE
+    ${BRANCH_ACCOUNT_TYPE}=  getData  ${ACCOUNT}  BRANCH_ACCOUNT_TYPE
+    ${BRANCH_ACCOUNT_NO}=  getData  ${ACCOUNT}  BRANCH_ACCOUNT_NO
+
+    ${contact}=  Generate random string        12     0123456789
+    ${ITEMIZED_BILL_STATEMENT}=  getData  ${ACCOUNT}  ITEMIZED_BILL_STATEMENT
+    ${DIRECT_DEBT}=  getData  ${ACCOUNT}  DIRECT_DEBT
+    ${EMAIL_NOTIFICATION}=  getData  ${ACCOUNT}  EMAIL_NOTIFICATION
+
+    Search By ID  ${HomePage}[HomeSeachOptionAccountId]  ${ACCOUNT_ID}
+    Click Item  //span[normalize-space()='Services - 2']
+
+
+    Go Back to Home Page
+    Sleep  10s
+
+
 
 
 
@@ -186,6 +227,13 @@ Edit Service Details two
     Click Item  ${ServiceDetailsPage}[EditDetails]
     Set Input  ${ServiceDetailsPage}[ServiceNameInput]      ${serviceIndex}
     Click Item  ${ServiceDetailsPage}[Submit]
+
+    Verify elements is visible and displayed  //span[@class='block-refresh-icon ']
+    Click Item  //span[@class='block-refresh-icon ']
+    #Verify elements is visible and displayed  //label[normalize-space()='Email']/following-sibling::input[@value='${email}']
+
+    #Wait Until Keyword Succeeds    ${TimeOut}      ${Start}     wait until page contains element    //label[normalize-space()='Email']/following-sibling::input[@value='${email}']
+    #Validate Value  ${serviceIndex}  //label[normalize-space()='Service Name']/following-sibling::input[@value='${serviceIndex}']
     Go Back to Home Page
 
 
@@ -296,6 +344,10 @@ Manage Account Address One
     Set Input  ${AccoutDetailPage}[LongitudeInput]      ${Longitude}
     Set Input  ${AccoutDetailPage}[AddressComment]      ${Comment}
     Click Item  ${AccoutDetailPage}[Submit]
+
+    Verify elements is visible and displayed  //span[@class='block-refresh-icon ']
+    Click Item  //span[@class='block-refresh-icon ']
+    #Validate Value  ${Union}  //label[normalize-space()='Kebele/Farmer Union']/following-sibling::input[@value='${Union}']
     Go Back to Home Page
 
 
@@ -322,6 +374,7 @@ Manage Service Address One
     Click Item  ${ServiceDetailsPage}[ManageService]
     Click Item  ${ServiceDetailsPage}[AddressDetail]
     Click Item  ${ServiceDetailsPage}[AddressEdit]
+    Sleep  20s
     Set Dropdown  ${ServiceDetailsPage}[RegionDropdown]  ${REGION}
     Set Dropdown  ${ServiceDetailsPage}[ZoneDropdown]  ${ZONE}
     Set Input  ${ServiceDetailsPage}[UnionInput]      ${Union}
@@ -423,16 +476,18 @@ View Document Details
     [Arguments]     ${caseID}  ${dataID}
     ${PROFILE}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  PROFILE_DETAILS  ${caseID}  ${dataID}
     ${PROFIE_ID}=  getData  ${PROFILE}  PROFIE_ID
-    ${DOCUMENT_ID}=  getData  ${PROFILE}  DOCUMENT_ID
+    ${DOCUMENT_NAME}=  getData  ${PROFILE}  DOCUMENT_NAME
 
     Search By ID  ${HomePage}[HomeSeachOptionProfileId]  ${PROFIE_ID}
     Click Item  ${ProfileDetailsPage}[ManageProfile]
     scroll element into view     ${ProfileDetailsPage}[ViewDocumentDetails]
     Click Item  ${ProfileDetailsPage}[ViewDocumentDetails]
-    Set Input         ${ProfileDetailsPage}[InputDocumentID]   ${DOCUMENT_ID}
+    Set Input         ${ProfileDetailsPage}[InputDocumentID]   ${DOCUMENT_NAME}
     Click Item  ${ProfileDetailsPage}[DocumentSearch]
+    Click Item  //button[@aria-label='Download']
+    Click Item  //a//span[text()='Dashboard']
 
-    Go Back to Home Page
+    #Go Back to Home Page
 
 
 
@@ -443,15 +498,20 @@ Search Order By OrderId
     ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  ORDER_INFO  ${caseID}  ${dataID}
     ${ORDER_ID}=  getData  ${data}  ORDER_ID
     Log To Console  ${ORDER_ID}
-    click element   ${OrderSearch}[Ordertab]
-    click element   ${OrderSearch}[viewOrder]
+    Click Item   ${OrderSearch}[Ordertab]
+    Click Item   ${OrderSearch}[viewOrder]
+    Click Item   ${OrderSearch}[Ordertab]
     Set Input  ${OrderSearch}[OrderSearchbar]      ${ORDER_ID}
-    click element   ${OrderSearch}[SearchButton]
+    Click Item   ${OrderSearch}[SearchButton]
     scroll element into view     (//button[@type='button'])[7]
-    click element   (//button[@type='button'])[7]
-    click element   //button[@aria-label='View']
+    Click Item   (//button[@type='button'])[7]
+    Click Item   //button[@aria-label='View']
+    Verify elements is visible and displayed  //span[normalize-space()='Order Status']/following-sibling::span//b[normalize-space()='Completed']
+    Click Item   ${OrderSearch}[OrderCloseButton]
+    go to   ${HomePage}[Homeurl]
+    Verify elements is visible and displayed  ${HomePage}[HomeLabel]
+    #Go Back to Home Page
     Sleep  10s
-    click element   ${OrderSearch}[OrderCloseButton]
 
 
 
@@ -474,6 +534,7 @@ Create Ticket
     ${NAME}=  getData  ${data}  Name
     ${EMAIL}=  getData  ${data}       Email
     ${CONTACT_NUMBER}=  getData  ${data}   Contact_Number
+    ${Language}=  getData  ${data}   Language
     ${DESCRIPTION}=  getData  ${data}      Description
     ${REGION}=  getData  ${data}  REGION
     ${ZONE}=  getData  ${data}  ZONE
@@ -493,6 +554,7 @@ Create Ticket
     Set Input         ${ServiceDetailsPage}[NameInput]   ${NAME}
     Set Input         ${ServiceDetailsPage}[EmailInput]   ${EMAIL}
     Set Input         ${ServiceDetailsPage}[Contact Number]   ${CONTACT_NUMBER}
+    Set Dropdown2  ${ServiceDetailsPage}[CreateTicketLanguage]  ${Language}
     Set Input         ${ServiceDetailsPage}[Descripion]     ${DESCRIPTION}
     Set Dropdown2  ${ServiceDetailsPage}[Region]  ${REGION}
     Set Dropdown2  ${ServiceDetailsPage}[Zone]  ${ZONE}
@@ -501,8 +563,13 @@ Create Ticket
     Set Input  ${ServiceDetailsPage}[StreetName]      ${StreetNo}
     Set Input  ${ServiceDetailsPage}[PostCode]      ${POCode}
     Set Input  ${ServiceDetailsPage}[POBoxNumber]      ${POBox}
-    Click Item        ${ServiceDetailsPage}[Save]
-    #Sleep  3s
+    #Set Dropdown2  //span[@class='select2 select2-container select2-container--default select2-container--below select2-container--focus']//span[@role='combobox']  1User
+    #Click Item        //span[@class='select2 select2-container select2-container--default select2-container--below select2-container--focus']//span[@role='combobox']
+    #Click Item        ${ServiceDetailsPage}[Save]
+
+    Verify elements is visible and displayed  //button[@id='saveButton_ticket']
+    Click Item        //button[@id='saveButton_ticket']
+    Sleep  13s
     #${TicketId}=  get text    ${ServiceDetailsPage}[TicketCreationPopUp]
     #log to console   ${TicketId}
 
@@ -589,3 +656,71 @@ Update HLR Status
     Set Dropdown    ${ServiceDetailsPage}[HLRStatusAction]      ${Action}
     Click Item    ${ServiceDetailsPage}[HLRStatusSubmitButton]
     Go Back to Home Page
+
+
+View and Validate By
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  SEARCH  ${caseID}  ${dataID}
+
+    ${LABEL}=  getData  ${data}  LABEL
+    ${ID}=  getData  ${data}  ID
+
+
+    IF    '${LABEL}' == 'Account Email ID'
+        Search By ID  //option[text()='${LABEL}']  ${ID}
+        #Verify elements is visible and displayed  //div[contains(text(),'${LABEL}')]/following-sibling::div//span[text()='${ID}']
+        Click Item    //button[normalize-space()='Cancel']
+
+    END
+
+    IF    '${LABEL}' == 'Biometric ID'
+        Search By ID  //option[text()='${LABEL}']  ${ID}
+        #Verify elements is visible and displayed  //div[contains(text(),'${LABEL}')]/following-sibling::div//span[text()='${ID}']
+        Click Item    //button[normalize-space()='Cancel']
+
+    END
+
+     Search By ID  //option[text()='${LABEL}']  ${ID}
+     Verify elements is visible and displayed  //div[contains(text(),'${LABEL}')]/following-sibling::div//span[text()='${ID}']
+
+    Sleep  10s
+    Go Back to Home Page
+
+
+Validate Service Details
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}   SERVICE_DETAILS  ${caseID}  ${dataID}
+    ${SERVICE_ID}=  getData  ${data}  SERVICE_ID
+
+    Search By ID  ${HomePage}[HomeSeachOptionServiceId]  ${SERVICE_ID}
+    Sleep  10s
+    Go Back to Home Page
+
+Validate Profile Details
+    [Arguments]     ${caseID}  ${dataID}
+    ${PROFILE}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  PROFILE_DETAILS  ${caseID}  ${dataID}
+    ${PROFIE_ID}=  getData  ${PROFILE}  PROFIE_ID
+
+    Search By ID  ${HomePage}[HomeSeachOptionProfileId]  ${PROFIE_ID}
+    Sleep  10s
+    Go Back to Home Page
+
+Validate Account Details
+
+    [Documentation]    To edit account level details
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  ACCOUNT_DETAILS  ${caseID}  ${dataID}
+    ${ACCOUNT_ID}=  getData  ${data}  ACCOUNT_ID
+
+    Search By ID  ${HomePage}[HomeSeachOptionAccountId]  ${ACCOUNT_ID}
+    Sleep  10s
+    Go Back to Home Page
+
+
+
+
+
+

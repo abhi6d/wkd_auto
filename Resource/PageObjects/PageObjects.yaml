@@ -51,6 +51,8 @@ CRMPage :
 
 
   HomePage:
+    Homeurl: "https://wakanda.crm-impl.10.0.14.241.nip.io/crm-ui/home"
+    HomeLabel: "//p[text()='Welcome to CRM']"
     HomeButton: "//a//span[text()='Dashboard']"
     #HomeButton: "//a[@href='/home']"
     HomeSearchBar: "//input[@class='MuiInputBase-input']"
@@ -155,6 +157,7 @@ CRMPage :
     ViewTicketPriorityDropdown: "(//div[@class=' css-g1d714-ValueContainer'])[2]"
     InputTicketID: "//input[@id='ticketId']"
     ViewTicketSearch: "//button[text()='Search']"
+    CreateTicketLanguage: "//span[@id='select2-languageCase-container']"
 
 
     ChangeLifeCycle: "//a[@id='/crm-ui/profile/account/service/changeLifeCycle']"
