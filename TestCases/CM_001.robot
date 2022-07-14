@@ -42,15 +42,15 @@ TEST CASE 001
     NAVIGATE SSO UI  ${CRM_UI}
 #-----------------------------------------------------------------------------------------------
 
-    #Manage Profile Residential Address two  TC_001  TD_01           #completed 1
-    #Manage Profile Permanent Address two  TC_001  TD_01             #completed 1
-    #Manage Service Address One  TC_001  TD_01                      #completed 1
-    #Edit Profile Details two  TC_001  TD_01                         #completed 1
-    #Edit Service Details two  TC_001  TD_01                        #completed 1
-    #Edit Account Details two  TC_001  TD_02                        #completed 1
-    #Manage Account Address One  TC_001  TD_02                      #completed 1
-    #View Identification Details  TC_001  TD_01     #complete        1
-    #Filter Ticket By Status Open    TC_001  TD_01  #complete        1
+    Manage Profile Residential Address two  TC_001  TD_04           #completed 1
+    #Manage Profile Permanent Address two  TC_001  TD_04             #completed 1
+    Manage Service Address One  TC_001  TD_04                 #completed 1
+    Edit Profile Details two  TC_001  TD_01                         #completed 1
+    Edit Service Details two  TC_001  TD_01                        #completed 1
+    Edit Account Details two  TC_001  TD_02                        #completed 1
+    Manage Account Address One  TC_001  TD_02                      #completed 1
+    View Identification Details  TC_001  TD_01     #complete        1
+    Filter Ticket By Status Open    TC_001  TD_01  #complete        1
     #Create Ticket  TC_001  TD_01                                    #completed 1
 
 

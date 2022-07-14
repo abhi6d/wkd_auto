@@ -374,7 +374,6 @@ Manage Service Address One
     Click Item  ${ServiceDetailsPage}[ManageService]
     Click Item  ${ServiceDetailsPage}[AddressDetail]
     Click Item  ${ServiceDetailsPage}[AddressEdit]
-    Sleep  20s
     Set Dropdown  ${ServiceDetailsPage}[RegionDropdown]  ${REGION}
     Set Dropdown  ${ServiceDetailsPage}[ZoneDropdown]  ${ZONE}
     Set Input  ${ServiceDetailsPage}[UnionInput]      ${Union}
@@ -695,8 +694,13 @@ Validate Service Details
     ${SERVICE_ID}=  getData  ${data}  SERVICE_ID
 
     Search By ID  ${HomePage}[HomeSeachOptionServiceId]  ${SERVICE_ID}
-    Sleep  10s
+    #Verify elements is visible and displayed  //label[normalize-space()='Service ID']/following-sibling::input[@value='${SERVICE_ID}']
+    wait until element is visible     //label[normalize-space()='Service ID']/following-sibling::input[@value='${SERVICE_ID}']    timeout=60
+
     Go Back to Home Page
+
+
+
 
 Validate Profile Details
     [Arguments]     ${caseID}  ${dataID}
@@ -704,7 +708,8 @@ Validate Profile Details
     ${PROFIE_ID}=  getData  ${PROFILE}  PROFIE_ID
 
     Search By ID  ${HomePage}[HomeSeachOptionProfileId]  ${PROFIE_ID}
-    Sleep  10s
+    wait until element is visible     //label[normalize-space()='Profile ID']/following-sibling::input[@value='${PROFIE_ID}']    timeout=60
+
     Go Back to Home Page
 
 Validate Account Details
@@ -716,8 +721,48 @@ Validate Account Details
     ${ACCOUNT_ID}=  getData  ${data}  ACCOUNT_ID
 
     Search By ID  ${HomePage}[HomeSeachOptionAccountId]  ${ACCOUNT_ID}
+    wait until element is visible     //label[normalize-space()='Account ID']/following-sibling::input[@value='${ACCOUNT_ID}']    timeout=60
+    Go Back to Home Page
+
+Validate ICCID Details
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}   SERVICE_DETAILS  ${caseID}  ${dataID}
+    ${ICCID}=  getData  ${data}  ICCID
+
+    Search By ID  ${HomePage}[HomeSeachOptionICCID]  ${ICCID}
     Sleep  10s
     Go Back to Home Page
+
+Validate IMSI Details
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}   SERVICE_DETAILS  ${caseID}  ${dataID}
+    ${IMSI}=  getData  ${data}  IMSI
+
+    Search By ID  ${HomePage}[HomeSeachOptionIMSI]  ${IMSI}
+    Sleep  10s
+    Go Back to Home Page
+
+Validate SIM Details
+    [Documentation]    To change SIM number
+    [Arguments]     ${caseID}  ${dataID}
+
+    ${data}=  Fetch From Excel  ${WKD_CRM_TESTDATA}  SERVICE_DETAILS  ${caseID}  ${dataID}
+    ${SERVICE_ID}=  getData  ${data}  SERVICE_ID
+    ${ICCID}=  getData  ${data}  ICCID
+    ${IMSI}=  getData  ${data}  IMSI
+
+
+    Search By ID  ${HomePage}[HomeSeachOptionServiceId]  ${SERVICE_ID}
+    Click Item    ${ServiceDetailsPage}[ManageService]
+    Click Item    ${ServiceDetailsPage}[ManageSim]
+    wait until element is visible     //label[normalize-space()='Service ID']/following-sibling::input[@value='${SERVICE_ID}']    timeout=60
+    wait until element is visible     //label[normalize-space()='ICCID']/following-sibling::input[@value='${ICCID}']    timeout=60
+    wait until element is visible     //label[normalize-space()='IMSI']/following-sibling::input[@value='${IMSI}']    timeout=60
+    Go Back to Home Page
+
+
 
 
 

@@ -55,20 +55,13 @@ TEST CASE 001
     #View and Validate By  TC_001  TD_12
     #View and Validate By  TC_001  TD_14
 
-    #Validate Service Details  TC_001  TD_01
+    Validate Service Details  TC_001  TD_04
     Validate Profile Details  TC_004  TD_04
-    #Validate Account Details  TC_001  TD_04
+    Validate Account Details  TC_001  TD_04
+    #Validate IMSI Details  TC_001  TD_04
+    #Validate ICCID Details  TC_001  TD_04
+    Validate SIM Details  TC_001  TD_04
     Sleep  10s
-    #Manage Profile Residential Address two  TC_001  TD_01           #completed 1
-    #Manage Profile Permanent Address two  TC_001  TD_01             #completed 1
-    #Manage Service Address One  TC_001  TD_01                      #completed 1
-    #Edit Profile Details two  TC_001  TD_01                         #completed 1
-    #Edit Service Details two  TC_001  TD_01                        #completed 1
-    #Edit Account Details two  TC_001  TD_02                        #completed 1
-    #Manage Account Address One  TC_001  TD_02                      #completed 1
-    #View Identification Details  TC_001  TD_01     #complete        1
-    #Filter Ticket By Status Open    TC_001  TD_01  #complete        1
-    #Create Ticket  TC_001  TD_01                                    #completed 1
 
 
 
